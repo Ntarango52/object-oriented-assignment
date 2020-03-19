@@ -1,10 +1,16 @@
 <?php
+
+namespace Ntarango52\objectOrientedAssignment;
+
+require_once(dirname(__DIR__) . "/vendor/autoload.php");
+
+use Ramsey\Uuid\Uuid;
 /**
- *(one line desc of the class)
+ * Classes for the author table
  *
- * (more detailed desc of what the class does)
+ * This is the code for the classes and methods for the author table.
  *
- * @author Nohemi Tarango <>
+ * @author Nohemi Tarango <ntarango3@cnm.edu>
  **/
 class Author {
 	/**
@@ -90,15 +96,15 @@ class Author {
 
 // store the author avatar url
 		$this->authorAvararUrl = $newAuthorAvatarUrl;
-}
+	}
 
 
-/**
- * mutator method for the author email
- *
- * @param string $newAuthorEmail new value of email
- * @throws UnexpectedValueException if $newAuthorEmail is not valid
- **/
+	/**
+	 * mutator method for the author email
+	 *
+	 * @param string $newAuthorEmail new value of email
+	 * @throws UnexpectedValueException if $newAuthorEmail is not valid
+	 **/
 	public function setAuthorEmail($newAuthorEmail) {
 		//verify the author email is valid
 		$newAuthorEmail = filter_var($newAuthorEmail, FILTER_SANITIZE_STRING);
@@ -108,15 +114,15 @@ class Author {
 
 		// store the author email
 		$this->authorEmail = $newAuthorEmail;
-}
+	}
 
 
-/**
- * mutator method for the author hash
- *
- * @param string $newAuthorHash new value of hash
- * @throws UnexpectedValueException if $newAuthorHash is not valid
- **/
+	/**
+	 * mutator method for the author hash
+	 *
+	 * @param string $newAuthorHash new value of hash
+	 * @throws UnexpectedValueException if $newAuthorHash is not valid
+	 **/
 	public function setAuthorHash($newAuthorHash) {
 		//verify the author hash is valid
 		$newAuthorHash = filter_var($newAuthorHash, FILTER_SANITIZE_STRING);
@@ -129,12 +135,12 @@ class Author {
 	}
 
 
-/**
- * mutator method for the author username
- *
- * @param string $newAuthorUsername new value of username
- * @throws UnexpectedValueException if $newAuthorUsername is not valid
- **/
+	/**
+	 * mutator method for the author username
+	 *
+	 * @param string $newAuthorUsername new value of username
+	 * @throws UnexpectedValueException if $newAuthorUsername is not valid
+	 **/
 	public function setAuthorUsername($newAuthorUsername) {
 		//verify the author username is valid
 		$newAuthorUsername = filter_var($newAuthorUsername, FILTER_SANITIZE_STRING);
@@ -146,4 +152,4 @@ class Author {
 		$this->authorUsername = $newAuthorUsername;
 	}
 }
-?>
+
