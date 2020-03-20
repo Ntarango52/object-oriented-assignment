@@ -14,6 +14,7 @@ use Ramsey\Uuid\Uuid;
  * @author Nohemi Tarango <ntarango3@cnm.edu>
  **/
 class Author {
+	use ValidateUuid;
 	/**
 	 * id for this author; this is the primary key
 	 **/
@@ -81,15 +82,16 @@ class Author {
 	 * @param uuid $newAuthorId new value of author id
 	 * @throws UnexpectedValueException if $newAuthorId is not an integar
 	 **/
-	public function setAuthorId($newAuthorId) {
-		// verify the author id is valid
-		$newAuthorId = filter_var($newAuthorId, FILTER_VALIDATE_UUID);
-		if($newAuthorId === false) {
-			throw(new UnexpectedValueException("author id is not a valid integar"));
+	public function setAuthorId( $newAuthorId) : void {
+		try {
+			$uuid = self::validateUuid($newAuthorId);
+		} catch(\InvalidArgumentException\RangeException\Exception\TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 
-		// convert and store the author id
-		$this->authorId = intval($newAuthorId);
+		// convert and store the tweet id
+		$this->authorId = $uuid;
 	}
 
 	/**
@@ -141,7 +143,7 @@ class Author {
 		}
 
 // store the author avatar url
-		$this->authorAvararUrl = $newAuthorAvatarUrl;
+		$this->authorAvatarUrl = $newAuthorAvatarUrl;
 	}
 
 	/**

@@ -1,21 +1,17 @@
 <?php
-require_once (dirname(__DIR__, 1)."/classes/Author.php");
-$author = new \ntarango3\objectOrientedAssignment\Author($authorId, $authorActivationToken, $authorAvatarUrl, $authorEmail, $authorHash, $authorUsername);
-var_dump($author);
+require_once (dirname(__DIR__, 1)."/Classes/Author.php");
 
-function bar() {
+	function bar() {
 
-	public function bar() {
-
-		$authorId = "the UUID here";
+		$authorId = "2daf089d-e481-4207-869c-f8053ee99b55";
 		$authorActivationToken = "the token here";
 		$authorAvatarUrl = "the url here";
 		$authorEmail = "the email here";
 		$authorHash = "the hash here";
 		$authorUsername = "the username here";
 		echo "$authorEmail $authorActivationToken $authorHash";
-		$author = new Author($authorId, $authorActivationToken, $authorAvatarUrl, $authorEmail, $authorHash, $authorUsername);
-		var_dump($authorUsername);
+		$author = new \Ntarango52\objectOrientedAssignment\Author($authorId, $authorActivationToken, $authorAvatarUrl, $authorEmail, $authorHash, $authorUsername);
+		var_dump($author);
 	}
 	bar();
-}
+
