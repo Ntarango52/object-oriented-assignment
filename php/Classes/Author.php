@@ -42,7 +42,7 @@ class Author {
 	/**
 	 * constructor for this profile
 	 *
-	 * @param int $newAuthorId new author id
+	 * @param uuid $newAuthorId new author id
 	 * @param string $newAuthorActivationToken new author activation token id
 	 * @param string $newAuthorAvatarUrl new author avatar url
 	 * @param string $newAuthorEmail new author email
@@ -69,7 +69,7 @@ class Author {
 	/**
 	 * accessor method for author id
 	 *
-	 * @return int value of author id
+	 * @return uuid value of author id
 	 **/
 	public function getAuthorId() {
 		return ($this->authorId);
@@ -78,18 +78,27 @@ class Author {
 	/**
 	 * mutator method for author id
 	 *
-	 * @param int $newAuthorId new value of author id
+	 * @param uuid $newAuthorId new value of author id
 	 * @throws UnexpectedValueException if $newAuthorId is not an integar
 	 **/
 	public function setAuthorId($newAuthorId) {
 		// verify the author id is valid
-		$newAuthorId = filter_var($newAuthorId, FILTER_VALIDATE_INT);
+		$newAuthorId = filter_var($newAuthorId, FILTER_VALIDATE_UUID);
 		if($newAuthorId === false) {
 			throw(new UnexpectedValueException("author id is not a valid integar"));
 		}
 
 		// convert and store the author id
 		$this->authorId = intval($newAuthorId);
+	}
+
+	/**
+	 * accessor method for author activation token
+	 *
+	 * @return string value of author activation token
+	 **/
+	public function getAuthorActivationToken() {
+		return ($this->authorActivationToken);
 	}
 
 	/**
@@ -110,6 +119,15 @@ class Author {
 	}
 
 	/**
+	 * accessor method for author avatar url
+	 *
+	 * @return string value of author avatar url
+	 **/
+	public function getAuthorAvatarUrl() {
+		return ($this->authorAvatarUrl);
+	}
+
+	/**
 	 * mutator method for author avatar url
 	 *
 	 * @param string $newAuthorAvatarUrl
@@ -126,6 +144,14 @@ class Author {
 		$this->authorAvararUrl = $newAuthorAvatarUrl;
 	}
 
+	/**
+	 * accessor method for author email
+	 *
+	 * @return string value of author email
+	 **/
+	public function getAuthorEmail() {
+		return ($this->authorEmail);
+	}
 
 	/**
 	 * mutator method for the author email
@@ -144,6 +170,14 @@ class Author {
 		$this->authorEmail = $newAuthorEmail;
 	}
 
+	/**
+	 * accessor method for author hash
+	 *
+	 * @return string value of author hash
+	 **/
+	public function getAuthorHash() {
+		return ($this->authorHash);
+	}
 
 	/**
 	 * mutator method for the author hash
@@ -162,6 +196,14 @@ class Author {
 		$this->authorHash = $newAuthorHash;
 	}
 
+	/**
+	 * accessor method for author username
+	 *
+	 * @return string value of author username
+	 **/
+	public function getAuthorUsername() {
+		return ($this->authorUsername);
+	}
 
 	/**
 	 * mutator method for the author username
