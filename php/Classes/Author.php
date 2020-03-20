@@ -161,7 +161,7 @@ class Author {
 	 **/
 	public function setAuthorEmail($newAuthorEmail) {
 		//verify the author email is valid
-		$newAuthorEmail = filter_var($newAuthorEmail, FILTER_SANITIZE_STRING);
+		$newAuthorEmail = filter_var($newAuthorEmail, FILTER_SANITIZE_EMAIL);
 		if($newAuthorEmail === false) {
 			throw(new UnexpectedValueException("author email is not a valid string"));
 		}
