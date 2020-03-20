@@ -2,6 +2,7 @@
 
 namespace Ntarango52\objectOrientedAssignment;
 
+require_once("autoload.php");
 require_once(dirname(__DIR__) . "/vendor/autoload.php");
 
 use Ramsey\Uuid\Uuid;
@@ -37,6 +38,33 @@ class Author {
 	 * the username of the author; the name registered with the website
 	 **/
 	private $authorUsername;
+
+	/**
+	 * constructor for this profile
+	 *
+	 * @param int $newAuthorId new author id
+	 * @param string $newAuthorActivationToken new author activation token id
+	 * @param string $newAuthorAvatarUrl new author avatar url
+	 * @param string $newAuthorEmail new author email
+	 * @param string $newAuthorHash new author hash
+	 * @param string $newAuthorUsername new author username
+	 * @throws UnexpectedValueException if any of the parameters are invalid
+	 **/
+	public function __construct($newAuthorId, $newAuthorActivationToken, $newAuthorAvatarUrl, $newAuthorEmail, $newAuthorHash, $newAuthorUsername) {
+		try {
+			$this->setAuthorId($newAuthorId);
+			$this->setAuthorActivationToken($newAuthorActivationToken);
+			$this->setAuthorAvatarUrl($newAuthorAvatarUrl);
+			$this->setAuthorEmail($newAuthorEmail);
+			$this->setAuthorHash($newAuthorHash);
+			$this->setAuthorUsername($newAuthorUsername);
+
+			//determine what exception type was thrown
+	} catch(\InvalidArgumentException\RangeException\Exception\TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+}
 
 	/**
 	 * accessor method for author id
@@ -151,5 +179,22 @@ class Author {
 		// store the author username
 		$this->authorUsername = $newAuthorUsername;
 	}
-}
 
+	/**
+	 * toString() magic method
+	 *
+	 * @return string HTML formatted author
+	 **/
+	public function __toString() {
+		// create an HTML formatted author
+		$html = "<p>Author id: "            . $this->authorId . "<br />"
+				. "Author activation token: " . $this->authorActivationToken . "<br />"
+				. "Author avatar url: "       . $this->authorAvatarUrl       . "<br />"
+				. "Author email: "            . $this->authorEmail           . "<br />"
+				. "Author hash: "             . $this->authorHash            . "<br />"
+				. "Author username: "         . $this->authorUsername        . "<br />"
+				. "</p>";
+		return($html);
+	}
+}
+?>
