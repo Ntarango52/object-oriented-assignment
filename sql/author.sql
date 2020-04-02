@@ -11,3 +11,5 @@ create table author(
   unique(authorUsername),
   primary key(authorId)
 );
+
+
