@@ -5,6 +5,7 @@ namespace Ntarango52\objectOrientedAssignment;
 require_once("autoload.php");
 require_once(dirname(__DIR__) . "/vendor/autoload.php");
 
+use InvalidArgumentException\RangeException\Exception\TypeError;
 use Ramsey\Uuid\Uuid;
 /**
  * Classes for the author table
@@ -61,7 +62,7 @@ class Author {
 			$this->setAuthorUsername($newAuthorUsername);
 
 			//determine what exception type was thrown
-	} catch(\InvalidArgumentException\RangeException\Exception\TypeError $exception) {
+	} catch(TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
@@ -85,7 +86,7 @@ class Author {
 	public function setAuthorId( $newAuthorId) : void {
 		try {
 			$uuid = self::validateUuid($newAuthorId);
-		} catch(\InvalidArgumentException\RangeException\Exception\TypeError $exception) {
+		} catch(TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
@@ -286,7 +287,7 @@ class Author {
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param Uuid|string $authorId author id to search for
-	 * @return Tweet|null Tweet found or null if not found
+	 * @return author|null author found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable are not the correct data type
 	 **/
