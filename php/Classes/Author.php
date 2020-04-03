@@ -354,7 +354,6 @@ class Author {
 		return ($authors);
 	}
 
-
 	/**
 	 * toString() magic method
 	 *
